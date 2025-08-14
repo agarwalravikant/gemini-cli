@@ -109,6 +109,7 @@ export function logUserPrompt(config: Config, event: UserPromptEvent): void {
 }
 
 export function logToolCall(config: Config, event: ToolCallEvent): void {
+  console.log('logToolCall', event.decision);
   const uiEvent = {
     ...event,
     'event.name': EVENT_TOOL_CALL,
@@ -144,6 +145,7 @@ export function logToolCall(config: Config, event: ToolCallEvent): void {
     event.duration_ms,
     event.success,
     event.decision,
+    event.tool_type,
   );
 }
 
