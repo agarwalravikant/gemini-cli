@@ -23,6 +23,7 @@ import {
   getErrorStatus,
   DiscoveredMCPTool,
   MCPServerConfig,
+  DiscoveredMCPTool,
 } from '@google/gemini-cli-core';
 import * as acp from './acp.js';
 import { Readable, Writable } from 'node:stream';
