@@ -211,7 +211,7 @@ export enum EventMetadataKey {
   GEMINI_CLI_USER_REMOVED_LINES = 50,
 
   // Logs tool type whether it is mcp or native.
-  GEMINI_CLI_TOOL_TYPE = 51,
+  GEMINI_CLI_TOOL_TYPE = 62,
 }
 
 export function getEventMetadataKey(
