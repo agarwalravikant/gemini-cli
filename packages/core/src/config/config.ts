@@ -343,8 +343,6 @@ export class Config {
       initializeTelemetry(this);
     }
 
-    logCliConfiguration(this, new StartSessionEvent(this));
-
     if (this.getUsageStatisticsEnabled()) {
       console.log('Data collection is disabled.');
     }
@@ -365,6 +363,7 @@ export class Config {
     }
     this.promptRegistry = new PromptRegistry();
     this.toolRegistry = await this.createToolRegistry();
+    logCliConfiguration(this, new StartSessionEvent(this, this.toolRegistry));
   }
 
   async refreshAuth(authMethod: AuthType) {

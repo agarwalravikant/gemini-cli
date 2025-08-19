@@ -14,6 +14,7 @@ import {
   getDecisionFromOutcome,
   ToolCallDecision,
 } from './tool-call-decision.js';
+import { ToolRegistry } from '../tools/tool-registry.js';
 
 export interface BaseTelemetryEvent {
   'event.name': string;
@@ -38,8 +39,10 @@ export class StartSessionEvent implements BaseTelemetryEvent {
   telemetry_enabled: boolean;
   telemetry_log_user_prompts_enabled: boolean;
   file_filtering_respect_git_ignore: boolean;
+  mcp_servers_count?: string;
+  mcp_tools_count?: string;
 
-  constructor(config: Config) {
+  constructor(config: Config, toolRegistry?: ToolRegistry) {
     const generatorConfig = config.getContentGeneratorConfig();
     const mcpServers = config.getMcpServers();
 
@@ -66,6 +69,15 @@ export class StartSessionEvent implements BaseTelemetryEvent {
       config.getTelemetryLogPromptsEnabled();
     this.file_filtering_respect_git_ignore =
       config.getFileFilteringRespectGitIgnore();
+    this.mcp_servers_count = mcpServers
+      ? Object.keys(mcpServers).length.toString()
+      : '';
+    if (toolRegistry) {
+      this.mcp_tools_count = toolRegistry
+        .getAllTools()
+        .filter((tool) => tool instanceof DiscoveredMCPTool)
+        .length.toString();
+    }
   }
 }
 

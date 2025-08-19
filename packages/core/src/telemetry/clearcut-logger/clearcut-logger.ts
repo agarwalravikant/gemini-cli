@@ -387,6 +387,16 @@ export class ClearcutLogger {
         gemini_cli_key: EventMetadataKey.GEMINI_CLI_GIT_COMMIT_HASH,
         value: GIT_COMMIT_INFO,
       },
+      {
+        gemini_cli_key:
+          EventMetadataKey.GEMINI_CLI_START_SESSION_MCP_SERVERS_COUNT,
+        value: event.mcp_servers_count ? event.mcp_servers_count : '',
+      },
+      {
+        gemini_cli_key:
+          EventMetadataKey.GEMINI_CLI_START_SESSION_MCP_TOOLS_COUNT,
+        value: event.mcp_tools_count ? event.mcp_tools_count : '',
+      },
     ];
 
     // Flush start event immediately
