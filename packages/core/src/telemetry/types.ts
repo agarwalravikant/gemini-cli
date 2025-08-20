@@ -41,6 +41,7 @@ export class StartSessionEvent implements BaseTelemetryEvent {
   file_filtering_respect_git_ignore: boolean;
   mcp_servers_count?: string;
   mcp_tools_count?: string;
+  mcp_tools?: string;
 
   constructor(config: Config, toolRegistry?: ToolRegistry) {
     const generatorConfig = config.getContentGeneratorConfig();
@@ -73,10 +74,13 @@ export class StartSessionEvent implements BaseTelemetryEvent {
       ? Object.keys(mcpServers).length.toString()
       : '';
     if (toolRegistry) {
-      this.mcp_tools_count = toolRegistry
+      const mcpTools = toolRegistry
         .getAllTools()
-        .filter((tool) => tool instanceof DiscoveredMCPTool)
-        .length.toString();
+        .filter((tool) => tool instanceof DiscoveredMCPTool);
+      this.mcp_tools_count = mcpTools.length.toString();
+      this.mcp_tools = mcpTools
+        .map((tool) => (tool as DiscoveredMCPTool).name)
+        .join(',');
     }
   }
 }

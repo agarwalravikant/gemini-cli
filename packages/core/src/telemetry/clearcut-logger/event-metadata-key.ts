@@ -243,4 +243,7 @@ export enum EventMetadataKey {
 
   // Logs count of MCP tools in Start Session Event
   GEMINI_CLI_START_SESSION_MCP_TOOLS_COUNT = 64,
+
+  // Logs name of MCP tools as comma seperated string
+  GEMINI_CLI_START_SESSION_MCP_TOOLS = 65,
 }

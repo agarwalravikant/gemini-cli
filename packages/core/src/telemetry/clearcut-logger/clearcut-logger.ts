@@ -397,6 +397,10 @@ export class ClearcutLogger {
           EventMetadataKey.GEMINI_CLI_START_SESSION_MCP_TOOLS_COUNT,
         value: event.mcp_tools_count ? event.mcp_tools_count : '',
       },
+      {
+        gemini_cli_key: EventMetadataKey.GEMINI_CLI_START_SESSION_MCP_TOOLS,
+        value: event.mcp_tools ? event.mcp_tools : '',
+      },
     ];
 
     // Flush start event immediately
